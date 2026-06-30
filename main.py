@@ -18,7 +18,6 @@ def main():
     print("  'v' - Toggle Volume Control Mode")
     print("==================================================")
 
-    # 1. Initialize Components
     try:
         detector = HandDetector(max_hands=1, detection_con=0.7, track_con=0.7)
         recognizer = GestureRecognizer()
@@ -29,19 +28,14 @@ def main():
         print("Please ensure you have installed all requirements: pip install -r requirements.txt")
         sys.exit(1)
 
-    # Screen dimensions for mapping
     screen_w, screen_h = pyautogui.size()
-    # Mouse mapper with exponential smoothing (ema_alpha=0.15 for smooth cursor)
     mapper = ScreenMapper(screen_w, screen_h, ema_alpha=0.15)
 
-    # 2. Camera Configuration
     cap = cv2.VideoCapture(0)
 
-    # Full HD resolution
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
-    # Fullscreen window
     cv2.namedWindow("Gesture Controlled PC HUD", cv2.WINDOW_NORMAL)
     cv2.setWindowProperty(
         "Gesture Controlled PC HUD",
@@ -57,7 +51,6 @@ def main():
     cam_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     cam_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-    # Active calibration zone for safety/precision mouse control (Centered 320x240 box)
     rect_w, rect_h = 320, 240
     rect_x_start = (cam_w - rect_w) // 2
     rect_y_start = (cam_h - rect_h) // 2
@@ -65,14 +58,12 @@ def main():
     rect_y_end = rect_y_start + rect_h
     active_rect = (rect_x_start, rect_y_start, rect_x_end, rect_y_end)
 
-    # 3. Application State
     mouse_mode = False
     volume_mode = False
     
     last_action = "System Ready"
     last_action_time = 0
     
-    # Cooldown settings for discrete gestures (in seconds)
     cooldowns = {
         "OPEN_PALM": 1.2,
         "FIST": 1.2,
@@ -90,10 +81,8 @@ def main():
             print("[WARNING] Failed to grab frame.")
             continue
 
-        # Mirror the frame for intuitive user interaction
         frame = cv2.flip(frame, 1)
 
-        # Detect Hand and Draw landmarks
         frame = detector.find_hands(frame, draw=True)
         lm_list = detector.get_landmarks(frame)
 

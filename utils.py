@@ -46,19 +46,15 @@ class ScreenMapper:
         rect_w = rx_end - rx_start
         rect_h = ry_end - ry_start
 
-        # Clamp coordinate to active rect
         clamped_x = max(rx_start, min(x, rx_end))
         clamped_y = max(ry_start, min(y, ry_end))
 
-        # Normalize coordinate within the active rect
         norm_x = (clamped_x - rx_start) / rect_w
         norm_y = (clamped_y - ry_start) / rect_h
 
-        # Map to screen coordinates
         target_x = int(norm_x * self.screen_w)
         target_y = int(norm_y * self.screen_h)
 
-        # Apply smoothing
         smooth_x = int(self.ema_alpha * target_x + (1 - self.ema_alpha) * self.prev_x)
         smooth_y = int(self.ema_alpha * target_y + (1 - self.ema_alpha) * self.prev_y)
 

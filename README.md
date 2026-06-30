@@ -100,27 +100,3 @@ Gesture_Controlled_PC/
 *   **Mac/Linux Audio Wrapper Support:** Cross-platform native volume wrappers.
 
 ---
-
-## 💼 LinkedIn Post Caption Idea
-
-Here's a caption template you can use to demo this project on your LinkedIn profile:
-
-```text
-🚀 Keyboard? Mouse? Not anymore! 💻🖐️
-
-I just built a Gesture Controlled PC system using Python, MediaPipe, and OpenCV! 
-
-By tracking 21 key hand coordinates in real-time, the program maps physical hand gestures directly to OS controls:
-✅ Move mouse pointer smoothly using Exponential Moving Average filters.
-✅ Left Click using a natural Pinch gesture.
-✅ Control volume dynamically by widening or closing the gap between thumb and index finger.
-✅ Play/Pause, Skip, or Mute media using standard gestures.
-
-To make cursor movement comfortable, I implemented an "Active Safety Zone" that maps a small box in the camera feed to the full screen, allowing me to reach screen corners easily.
-
-Tech Stack: Python, OpenCV, MediaPipe, PyAutoGUI, PyCaw (Windows Core Audio API)
-
-Check out the code here: [Insert Github Link] 
-
-#Python #OpenCV #MediaPipe #ComputerVision #Automation #Programming #ArtificialIntelligence #SoftwareEngineering
-```
